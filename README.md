@@ -720,8 +720,9 @@ ffmpeg('/path/to/file.avi').preset(myPreset);
 The `complexFilter()` method enables setting a complex filtergraph for a command.  It expects a filter specification (or a filter specification array) and an optional output mapping parameter as arguments.
 
 Filter specifications may be either plain ffmpeg filter strings (eg. `split=3[a][b][c]`) or objects with the following keys:
-* `filter`: filter name
+* `filter`: optional; filter name when using a single filter.
 * `options`: optional; either an option string for the filter (eg. `in:0:30`), an options array for unnamed options (eg. `['in', 0, 30]`) or an object mapping option names to values (eg. `{ t: 'in', s: 0, n: 30 }`).  When `options` is not specified, the filter will be added without any options.
+* `chain`: optional; array of filters and options to use when chaining multiple filters together (e.g. [{filter: 'scale', options: '640:480'}, {filter: 'fade', options: 'in:0:30'}]). Rules for specifying filter name and options inside the chain are the same as filter and options above.
 * `inputs`: optional; input stream specifier(s) for the filter.  The value may be either a single stream specifier string or an array of stream specifiers.  Each specifier can be optionally enclosed in square brackets.  When input streams are not specified, ffmpeg will use the first unused streams of the correct type.
 * `outputs`: optional; output stream specifier(s) for the filter.  The value may be either a single stream specifier string or an array of stream specifiers.  Each specifier can be optionally enclosed in square brackets.
 
